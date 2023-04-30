@@ -8,14 +8,20 @@ TagManager:
   - press1
   - press3
   - press4
+  - isGround
+  - press5
+  - press6
+  - press7
+  - press8
+  - press9
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - 
+  - WhatIsGround
   - 
   - PostProcessing
   - 
