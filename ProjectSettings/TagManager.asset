@@ -14,6 +14,9 @@ TagManager:
   - press7
   - press8
   - press9
+  - ratcage
+  - ground
+  - cagerat
   layers:
   - Default
   - TransparentFX
