@@ -17,6 +17,7 @@ TagManager:
   - ratcage
   - ground
   - cagerat
+  - oil
   layers:
   - Default
   - TransparentFX
