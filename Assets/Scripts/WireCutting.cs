@@ -8,6 +8,8 @@ public class WireCutting : MonoBehaviour
     public int requiredClicks = 5; // How many clicks are required before the object moves
 	public float timeLimit = 5f;
     public GameObject objectToMove; // Reference to the object that will be moved
+    public AudioSource audioSource; //
+
 
     private int clickCount = 0;
 	 private Coroutine clickCoroutine;
@@ -18,6 +20,9 @@ public class WireCutting : MonoBehaviour
         // Check if the player is inside the wire area and presses the "E" key
         if (Input.GetKeyDown(KeyCode.E) && IsPlayerInWireArea())
         {
+            //ADD CHEWING AUDIO HERE
+            audioSource.Play();
+
             clickCount++;
             // If the required number of clicks has been reached, move the object
             if (clickCount == requiredClicks)
@@ -39,7 +44,7 @@ public class WireCutting : MonoBehaviour
     // Check if the player is inside the wire area
     bool IsPlayerInWireArea()
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 1f); // Change the radius as needed
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 0.1f); // Change the radius as needed
         foreach (Collider collider in colliders)
         {
             if (collider.gameObject.CompareTag("wire"))
