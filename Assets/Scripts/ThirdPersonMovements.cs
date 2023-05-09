@@ -49,6 +49,8 @@ public class ThirdPersonMovements : MonoBehaviour
     public float timeLimit = 5f;
     public GameObject objectToMove; // Reference to the object that will be moved
     public AudioSource audioSource; //
+    public AudioSource newgame; // 
+    public AudioSource task1;
 
     private int clickCount = 0;
     private Coroutine clickCoroutine;
@@ -59,6 +61,9 @@ public class ThirdPersonMovements : MonoBehaviour
         rb.freezeRotation = true;
 
         readyToJump = true;
+        newgame.Play();
+        
+        task1.Play();
     }
 
     private void Update()
