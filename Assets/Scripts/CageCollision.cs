@@ -5,6 +5,11 @@ using UnityEngine;
 public class CageCollision : MonoBehaviour
 {
     public AudioSource hitCageSource;
+    public AudioSource task4;
+
+    bool hit = false;
+
+    public Rigidbody fire;
 
     // Start is called before the first frame update
     void Start()
@@ -19,8 +24,16 @@ public class CageCollision : MonoBehaviour
     }
 
     void OnCollisionEnter (Collision collision){
-        if(collision.gameObject.tag == "ground"){
+        if(collision.gameObject.tag == "ground" && hit == false){
             hitCageSource.Play();
+            StartCoroutine(playAudio(task4));
+            fire.isKinematic = false;
+            hit = true;
         }
+    }
+    IEnumerator playAudio(AudioSource asa)
+    {
+        yield return new WaitForSeconds(3);
+        asa.Play();
     }
 }

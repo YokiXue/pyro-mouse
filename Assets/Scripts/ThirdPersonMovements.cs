@@ -43,17 +43,7 @@ public class ThirdPersonMovements : MonoBehaviour
 
     Rigidbody rb;
 
-    // WIRE CUTTING
-    public float moveDistance = 0.1f; // How much to move the object each time
-    public int requiredClicks = 5; // How many clicks are required before the object moves
-    public float timeLimit = 5f;
-    public GameObject objectToMove; // Reference to the object that will be moved
-    public AudioSource audioSource; //
-    public AudioSource newgame; // 
-    public AudioSource task1;
-
-    private int clickCount = 0;
-    private Coroutine clickCoroutine;
+    
 
     private void Start()
     {
@@ -61,9 +51,7 @@ public class ThirdPersonMovements : MonoBehaviour
         rb.freezeRotation = true;
 
         readyToJump = true;
-        newgame.Play();
-        
-        task1.Play();
+       
     }
 
     private void Update()
@@ -91,24 +79,6 @@ public class ThirdPersonMovements : MonoBehaviour
         {
             myAnimator.SetBool("attacking", true);
 
-            //ADD CHEWING AUDIO HERE
-            audioSource.Play();
-
-            clickCount++;
-            // If the required number of clicks has been reached, move the object
-            if (clickCount == requiredClicks)
-            {
-                objectToMove.transform.position += new Vector3(moveDistance, 0, 0);
-                clickCount = 0;
-                if (clickCoroutine != null)
-                {
-                    StopCoroutine(clickCoroutine);
-                }
-            }
-            else if (clickCoroutine == null)
-            {
-                clickCoroutine = StartCoroutine(ResetClickCount());
-            }
         }
         else
         {
@@ -199,12 +169,5 @@ public class ThirdPersonMovements : MonoBehaviour
             }
         }
         return false;
-    }
-
-    IEnumerator ResetClickCount()
-    {
-        yield return new WaitForSeconds(timeLimit);
-        clickCount = 0;
-        clickCoroutine = null;
     }
 }
