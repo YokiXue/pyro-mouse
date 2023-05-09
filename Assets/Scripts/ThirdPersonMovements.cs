@@ -37,9 +37,21 @@ public class ThirdPersonMovements : MonoBehaviour
     float horizontalInput;
     float verticalInput;
 
+    public Animator myAnimator;
+
     Vector3 moveDirection;
 
     Rigidbody rb;
+
+    // WIRE CUTTING
+    public float moveDistance = 0.1f; // How much to move the object each time
+    public int requiredClicks = 5; // How many clicks are required before the object moves
+    public float timeLimit = 5f;
+    public GameObject objectToMove; // Reference to the object that will be moved
+    public AudioSource audioSource; //
+
+    private int clickCount = 0;
+    private Coroutine clickCoroutine;
 
     private void Start()
     {
@@ -59,9 +71,44 @@ public class ThirdPersonMovements : MonoBehaviour
 
         // handle drag
         if (grounded)
+        {
             rb.drag = groundDrag;
+            //myAnimator.SetBool("jumping", false);
+        }
         else
+        {
             rb.drag = 0;
+            //myAnimator.SetBool("jumping", true);
+        }
+
+        // Check if the player is inside the wire area and presses the "E" key
+        if (Input.GetKeyDown(KeyCode.E) && IsPlayerInWireArea())
+        {
+            myAnimator.SetBool("attacking", true);
+
+            //ADD CHEWING AUDIO HERE
+            audioSource.Play();
+
+            clickCount++;
+            // If the required number of clicks has been reached, move the object
+            if (clickCount == requiredClicks)
+            {
+                objectToMove.transform.position += new Vector3(moveDistance, 0, 0);
+                clickCount = 0;
+                if (clickCoroutine != null)
+                {
+                    StopCoroutine(clickCoroutine);
+                }
+            }
+            else if (clickCoroutine == null)
+            {
+                clickCoroutine = StartCoroutine(ResetClickCount());
+            }
+        }
+        else
+        {
+            myAnimator.SetBool("attacking", false);
+        }
     }
 
     private void FixedUpdate()
@@ -78,6 +125,8 @@ public class ThirdPersonMovements : MonoBehaviour
         if (Input.GetKey(jumpKey) && readyToJump && grounded)
         {
             readyToJump = false;
+
+            //myAnimator.SetBool("jumping", true);
 
             Jump();
 
@@ -102,6 +151,15 @@ public class ThirdPersonMovements : MonoBehaviour
     private void SpeedControl()
     {
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        //Debug.Log("VELOCITY: " + flatVel);
+
+        if (flatVel.magnitude == 0)
+        {
+            myAnimator.SetBool("walking", false);
+        } else
+        {
+            myAnimator.SetBool("walking", true);
+        }
 
         // limit velocity if needed
         if (flatVel.magnitude > moveSpeed)
@@ -120,6 +178,28 @@ public class ThirdPersonMovements : MonoBehaviour
     }
     private void ResetJump()
     {
+        //myAnimator.SetBool("jumping", false);
         readyToJump = true;
+    }
+
+    // Check if the player is inside the wire area
+    bool IsPlayerInWireArea()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 0.1f); // Change the radius as needed
+        foreach (Collider collider in colliders)
+        {
+            if (collider.gameObject.CompareTag("wire"))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    IEnumerator ResetClickCount()
+    {
+        yield return new WaitForSeconds(timeLimit);
+        clickCount = 0;
+        clickCoroutine = null;
     }
 }
