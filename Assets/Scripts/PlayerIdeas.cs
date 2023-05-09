@@ -14,11 +14,14 @@ public class PlayerIdeas : MonoBehaviour
     public AudioSource task4;
     public AudioSource ending;
 
+    public AudioSource door;
+
     bool task1Done = false;
     bool task2Done = false;
     bool task3Done = false;
     bool task4Done = false;
 
+    bool playFirst = false;
     bool playNext = true;
     bool playRatCage = true;
 
@@ -86,7 +89,7 @@ public class PlayerIdeas : MonoBehaviour
         StartCoroutine(ClearPath());
         checkerRoom3.material.color = Color.black;
         //myAnimator = GetComponent<Animator>();
-        newgame.Play();
+        StartCoroutine(playAudio(newgame));
 
         //task1.Play();
 
@@ -96,7 +99,7 @@ public class PlayerIdeas : MonoBehaviour
     void Update()
     {
         // playing the second audio right after the first
-        if (newgame.isPlaying == false && playNext)
+        if (newgame.isPlaying == false && playNext && playFirst)
         {
             playNext = false;
             Debug.Log("yes");
@@ -133,6 +136,7 @@ public class PlayerIdeas : MonoBehaviour
     IEnumerator playAudio(AudioSource asa){
         yield return new WaitForSeconds(3);
         asa.Play();
+        playFirst = true;
     }
 
     // TASK 1
@@ -251,6 +255,7 @@ public class PlayerIdeas : MonoBehaviour
             if (CheckTwoArrays(userCode, correctCode))
             {
                 StartCoroutine(checkCode(Color.green));
+                door.Play();
                 currentCode = 0;
                 userCode = new int[4];
                 StartCoroutine(OpenDoor(door2, doorStartPos2, doorEndPos2));
@@ -261,6 +266,7 @@ public class PlayerIdeas : MonoBehaviour
             else
             {
                 StartCoroutine(checkCode(Color.red));
+                StartCoroutine(ClearPath());
                 currentCode = 0;
                 userCode = new int[4];
 

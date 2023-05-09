@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/pyro-mouse.unity
     guid: ad779b4f00f2a4868a8fda2542ac36f4
+  - enabled: 1
+    path: Assets/Scenes/LastScene.unity
+    guid: bfa1c3f5f338d4c8b809deca5726b3c2
   m_configObjects: {}

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class burner2 : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class burner2 : MonoBehaviour
     public AudioSource ending; //
 
     bool hit = false;
+    bool audioStart = false;
 
     private void Start()
     {
@@ -29,6 +31,15 @@ public class burner2 : MonoBehaviour
             // Play the audio clip
             audioSource.Play();
             StartCoroutine(playAudio(ending));
+            
+        }
+    }
+
+    private void Update()
+    {
+        if (ending.isPlaying == false && audioStart) {
+            //StartCoroutine(moveToBlackScreen());
+            SceneManager.LoadScene("LastScene");
         }
     }
 
@@ -36,6 +47,14 @@ public class burner2 : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         asa.Play();
+        audioStart = true;
+    }
+
+    IEnumerator moveToBlackScreen()
+    {
+        yield return new WaitForSeconds(5);
+        
+        SceneManager.LoadScene("LastScene");
     }
 }
 
