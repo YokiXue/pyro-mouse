@@ -20,6 +20,7 @@ TagManager:
   - cage
   - wire
   - oil
+  - ratCage
   layers:
   - Default
   - TransparentFX
