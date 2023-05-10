@@ -9,6 +9,8 @@ public class burner2 : MonoBehaviour
     public ParticleSystem smoke;
     public AudioSource audioSource; //
 
+    private float audioTimer = 0f;
+
     public AudioSource ending; //
 
     bool hit = false;
@@ -30,14 +32,21 @@ public class burner2 : MonoBehaviour
             smoke.Play();
             // Play the audio clip
             audioSource.Play();
-            StartCoroutine(playAudio(ending));
+            ending.Play();
+            //StartCoroutine(playAudio(ending));
             
         }
     }
 
     private void Update()
     {
-        if (ending.isPlaying == false && audioStart) {
+        if (audioSource.isPlaying)
+        {
+            audioTimer += Time.deltaTime;
+        }
+
+        if (ending.isPlaying == false && audioSource.clip != null && audioTimer>=25f )
+        {
             //StartCoroutine(moveToBlackScreen());
             SceneManager.LoadScene("LastScene");
         }
@@ -53,7 +62,7 @@ public class burner2 : MonoBehaviour
     IEnumerator moveToBlackScreen()
     {
         yield return new WaitForSeconds(5);
-        
+
         SceneManager.LoadScene("LastScene");
     }
 }
