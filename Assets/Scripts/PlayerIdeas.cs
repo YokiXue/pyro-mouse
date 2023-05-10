@@ -13,6 +13,7 @@ public class PlayerIdeas : MonoBehaviour
     public AudioSource task3away;
     public AudioSource task4;
     public AudioSource ending;
+    public AudioSource done;
 
     public AudioSource door;
 
@@ -119,6 +120,7 @@ public class PlayerIdeas : MonoBehaviour
             {
                 task2Done = true;
                 StartCoroutine(playAudio(task3away));
+                playAudio(done);
                 objectToMove.transform.position += new Vector3(moveDistance, 0, 0);
                 clickCount = 0;
                 if (clickCoroutine != null)
