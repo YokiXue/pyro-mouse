@@ -1,4 +1,4 @@
-**pyro-mouse**
+**Pyro-mouse**
 
 “Pyro-Mouse” is a first-person action-adventure game that puts the player in control of a mouse named Jerry, who has just escaped from an evil science lab. The lab was conducting experiments to replace all organic mice in the world with mechanical ones. However, Jerry managed to escape and is now on a mission to both save his fellow mice from this fate and destroy this evil lab at any cost.
 
