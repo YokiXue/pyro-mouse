@@ -7,8 +7,8 @@ Unlike other games in the same category, “Pyro-Mouse” offers a unique blend 
 
 
 B. How to Play
-● Use the arrow keys or WASD to control the movement of the mouse
-● Use the spacebar key to jump over obstacles or onto objects.
-● Use the mouse to control the camera view and get a better look at your
+● Use the arrow keys or WASD to control the movement of the mouse<br/>
+● Use the spacebar key to jump over obstacles or onto objects.<br/>
+● Use the mouse to control the camera view and get a better look at your<br/>
 surroundings.
-● Press the ESC key to pause the game
+● Press the ESC key to pause the game<br/>
