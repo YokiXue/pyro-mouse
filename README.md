@@ -15,3 +15,5 @@ Unlike other games in the same category, “Pyro-Mouse” offers a unique blend 
 ● Use the mouse to control the camera view and get a better look at your
 surroundings.<br/>
 ● Press the ESC key to pause the game<br/>
+
+**Video Demo**<br/><br/>
