@@ -6,7 +6,7 @@ By assuming the role of Jerry, players gain a firsthand understanding of the des
 Unlike other games in the same category, “Pyro-Mouse” offers a unique blend of immersive storytelling, dynamic challenges, engaging gameplay mechanics, and a distinct visual style. While many action-adventure games focus solely on combat and exploration, “Pyro-Mouse” offers a refreshing twist by incorporating puzzle-solving elements into the gameplay. Players will need to think strategically, solve puzzles, and use their problem-solving skills to progress through the game.
 
 
-B. How to Play
+B. How to Play<br/>
 ● Use the arrow keys or WASD to control the movement of the mouse<br/>
 ● Use the spacebar key to jump over obstacles or onto objects.<br/>
 ● Use the mouse to control the camera view and get a better look at your<br/>
